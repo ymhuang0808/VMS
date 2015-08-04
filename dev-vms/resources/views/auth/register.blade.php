@@ -22,9 +22,9 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
+							<label class="col-md-4 control-label">Full Name</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
+								<input type="text" class="form-control" name="full_name" value="{{ old('full_name') }}">
 							</div>
 						</div>
 
@@ -46,6 +46,27 @@
 							<label class="col-md-4 control-label">Confirm Password</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password_confirmation">
+							</div>
+                        </div>
+
+                        <div class="form-group">
+							<label class="col-md-4 control-label">Gender</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="gender" value="{{ old('gender') }}">
+							</div>
+                        </div>
+
+                        <div class="form-group">
+							<label class="col-md-4 control-label">Birthdate</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="birth_date" value="{{ old('birth_date') }}" id="startdatepicker">
+							</div>
+                        </div>
+
+                        <div class="form-group">
+							<label class="col-md-4 control-label">Phone Number</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
 							</div>
 						</div>
 

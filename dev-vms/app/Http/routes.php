@@ -12,8 +12,17 @@
 */
 
 Route::any('/', function () {
-    return "Hello World!";
+    return Redirect::to('auth/login');
 });
+
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::model('processes', 'Process');
 Route::model('projects', 'Project');
@@ -28,6 +37,6 @@ Route::bind('projects', function($value, $route) {
 Route::resource('projects.processes', 'ProcessesController');
 Route::resource('projects', 'ProjectsController');
 
-Route::get('user/{id}', 'EditProfileController@showProfile');
-Route::post('user/{id}/edit', 'EditProfileController@editProfile');
+Route::get('user', 'EditProfileController@showProfile');
+Route::post('user/edit', 'EditProfileController@editProfile');
 

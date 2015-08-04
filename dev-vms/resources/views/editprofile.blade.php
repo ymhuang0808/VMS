@@ -1,23 +1,6 @@
-<html>
-    <head>
-        <title>VMS edit profile</title>
-        <meta charset = "utf-8" http-equiv="Page-Enter" content="blendTrans(Duration=10.0)">
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.10.2.min.js"></script>
-        {!! csrf_field() !!}
-        <script type="text/javascript">
-           $.ajaxSetup({
-               headers: {
-                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-               }
-           });
-        </script>
-		
-		{!! HTML::style('css/greeting.css') !!}
-		
-    </head>
-    <body>
-        
+@extends('app')
+
+@section('content')
         
         <?php echo "
         
@@ -29,7 +12,7 @@
             <form name ='form1'
                   id = 'form1'
                   method = 'post'
-                  action = '" . $id . "/edit'>
+                  action = '/user/edit'>
             
                 姓名:<input type = 'text' name = 'username' value ='" . $username . "'>
                 <br>
@@ -42,21 +25,17 @@
                 手機號碼:<input type = 'text' name = 'cellphone' value ='" . $cellphone . "'>
                 <br>
                 
-                
-                <input type='hidden' name='id' value='" . $id . "'>
-                
                 <input type = 'Submit' class = 'button' name = 'submit1' value ='save'>
-                <input type = 'button' class = 'button' value ='reset' onclick=\"location.href='" . $id . "'\">
-                <input type = 'button' class = 'button' value ='menu' onclick=\"location.href='002.php'\">
-                <input type = 'button' class = 'button' value ='next' onclick=\"location.href='002.php'\">
+                <input type = 'button' class = 'button' value ='reset' onclick=\"location.href=''\">
+                <input type = 'button' class = 'button' value ='menu' onclick=\"location.href='" . url('/home') . "'\">
+                <input type = 'button' class = 'button' value ='next' onclick=\"location.href='" . url('/home') . "'\">
             
             ";
             
         ?>
         
             <!!laravel will check token if we have post some message to other pages.>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <?php echo csrf_field(); ?>
         </form>
-        
-    </body>
-</html>
+
+@endsection

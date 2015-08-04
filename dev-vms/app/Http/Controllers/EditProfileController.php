@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
+use Auth;
 use DB;
 use App\User;
-use App\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,11 +15,17 @@ class EditProfileController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function showProfile($id)
+    public function showProfile()
     {
+        if (Auth::guest())
+        {
+            return Redirect::to('auth/login');
+        }
+
+        $id = Auth::user()->id;
 
         //database information is in .env file
-        $user = Users::all()
+        $user = User::all()
                 ->where('id', (int)$id)
                 ->first();
                 
@@ -40,7 +46,7 @@ class EditProfileController extends Controller
     }
     public function editProfile(Request $request)
     {
-        $id = $request->input('id');
+        $id = Auth::user()->id;
         $username = $request->input('username');
         $sex = $request->input('sex');
         $birthdate = $request->input('birthdate');
@@ -49,7 +55,7 @@ class EditProfileController extends Controller
         
         
         //use ORM to connect DB
-        $user = Users::find($id);
+        $user = User::find($id);
         $user->full_name = $username;
         $user->gender = $sex;
         $user->birth_date = $birthdate;
@@ -58,6 +64,6 @@ class EditProfileController extends Controller
         $user->save();
         
         
-        return redirect('user/'.$id);
+        return redirect('user');
     }
 }

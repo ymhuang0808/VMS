@@ -32,7 +32,7 @@
                 margin-left:-250px;
             }
             
-            input
+            #form1 input
             {
                 font-family:Courier New,Meiryo,Microsoft YaHei;
                 font-size:20px;
@@ -41,7 +41,7 @@
                 border: 1px dashed blue;
             }
             
-            .button
+            #form1 .button
             {
                 width:100px;
             }

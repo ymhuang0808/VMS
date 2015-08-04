@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->string('full_name')->default('');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->char('gender', 1);
+            $table->char('gender', 1)->default('');
             $table->date('birth_date')->nullable();
-            $table->string('phone', 20);
+            $table->string('phone', 20)->default('');
             $table->boolean('is_project_manager')->default(false);
             $table->rememberToken();
             $table->timestamps();
