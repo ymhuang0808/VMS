@@ -37,6 +37,12 @@ Route::bind('projects', function($value, $route) {
 Route::resource('projects.processes', 'ProcessesController');
 Route::resource('projects', 'ProjectsController');
 
-Route::get('user', 'EditProfileController@showProfile');
-Route::post('user/edit', 'EditProfileController@editProfile');
+Route::get('user', [
+    'middleware' => 'isLoggedIn',
+    'uses' =>'EditProfileController@showProfile'
+]);
 
+Route::post('user/edit', [
+    'middleware' => 'isLoggedIn',
+    'uses' => 'EditProfileController@editProfile'
+]);
