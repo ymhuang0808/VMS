@@ -18,8 +18,8 @@ class IsLoggedIn
 
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-            // perform action
+        if ($this->auth->guest()) {
+            return response('Unauthorized.', 401);
         }
         return $next($request);
     }
